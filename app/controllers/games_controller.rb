@@ -5,16 +5,15 @@ class GamesController < ApplicationController
   end
 
   def play_dice
-    pos = JSON.parse(@game.positions)
-    dice = Integer(params[:dice])
+    @dice = Integer(params[:dice])
     # forward, but cycle on the position maximum
-    square_pos = (pos[@game.player] += dice) % (Square.order(:position).reverse.first.position + 1)
+    @square_pos = (@pos[@player] += @dice) % (Square.max_position + 1)
     # select the first effect >= current position
-    @effect = Square.order(:position).where("position >= ?", square_pos).first unless dice == 0
+    @effect = Square.order(:position).where("position >= ?", @square_pos).first unless @dice == 0
     # update position and set next player
     @game.update_attributes(
-      player: (@game.player + 1) % pos.size,
-      positions: pos.to_json
+      player: (@player + 1) % @pos.size,
+      positions: @pos.to_json
     )
     render :play
   end
@@ -83,6 +82,8 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
+      @pos = JSON.parse(@game.positions)
+      @player = @game.player
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

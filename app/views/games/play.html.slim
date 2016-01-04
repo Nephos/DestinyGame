@@ -1,8 +1,23 @@
-- if @effect
-  h3 = @effect.title
-  p = @effect.description
+.container-fluid
+  .row
+    - if @effect
+      h1.page-header = @effect.title
+      p = @effect.description
 
-h1 = "Player #{@game.player}"
-= link_to "Pass", play_dice_game_path(@game, 0), class: "btn"
-- (1..20).each do |i|
-  = link_to "#{i}", play_dice_game_path(@game, i), class: "btn"
+  .row
+    h1.page-header = "Player #{@game.player} ()"
+
+
+  .row
+    .col-sm-offset-2.col-sm-8
+      center
+        samp = link_to " Pass ", play_dice_game_path(@game, 0), class: "btn btn-lg btn-default"
+  - (0..4).each do |a|
+    // .clearfix.visible-xs-block
+    .row
+      .col-sm-offset-2.col-sm-8
+        center
+          - (1..4).each do |b|
+            - i = a * 4 + b
+            - type = %w(danger warning info primary success)[a]
+            samp = link_to "#{i}".ljust(3, " ").rjust(5, " "), play_dice_game_path(@game, i), class: "btn btn-lg btn-#{type}"
