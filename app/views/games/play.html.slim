@@ -1,13 +1,13 @@
 .container-fluid
   .row
-    h1.page-header
+    h3.page-header
       = @effect.title if @effect
       .small = "Last: " + @game.player_name(-1)
     - if @effect
       p = @effect.description
 
   .row
-    h1.page-header = "Player #{@game.player} (#{@game.player_name})"
+    h3.page-header = "Player #{@game.player} (#{@game.player_name})"
 
 
   .row

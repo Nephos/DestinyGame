@@ -27,7 +27,7 @@ squares = {
 }
 
 nb_total = squares.values.inject(&:+)
-all = (1..nb_total).to_a.shuffle
+all = (1..(nb_total+1)).to_a.shuffle
 
 i = 1
 squares.each do |data, nb_square|
