@@ -12,12 +12,12 @@
     .col-sm-offset-2.col-sm-8
       center
         samp = link_to " Pass ", play_dice_game_path(@game, 0), class: "btn btn-lg btn-default"
+
   - (0..4).each do |a|
-    // .clearfix.visible-xs-block
     .row
       .col-sm-offset-2.col-sm-8
         center
           - (1..4).each do |b|
             - i = a * 4 + b
             - type = %w(danger warning info primary success)[a]
-            samp = link_to "#{i}".ljust(3, " ").rjust(5, " "), play_dice_game_path(@game, i), class: "btn btn-lg btn-#{type}"
+            samp = link_to "#{i}", play_dice_game_path(@game, i), class: "btn btn-lg btn-#{type} text-center", style: "margin: 2px; width: 80px; height: 80px; line-height: 40px; text-align: center;"
