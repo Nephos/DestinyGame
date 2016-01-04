@@ -1,16 +1,21 @@
 class Game < ActiveRecord::Base
-  before_create :create_position
-  def create_position
-    self.positions = Array.new(Integer(self.positions)) do
-      {"name" => "", "val" => 1}
-    end
-  end
-  before_save :positions_to_json
-  def positions_to_json
-    self.positions = self.positions.to_json
+  def json_positions
+    JSON.parse(self.attributes["positions"] || [{"name" => "default", "val" => 1}])
   end
 
-  def positions
-    JSON.parse(self.attributes["positions"])
+  def json_positions= json
+    self.positions = json.to_json
+  end
+
+  def last_player
+    self.json_positions
+  end
+
+  def nb_players
+    self.json_positions.size
+  end
+
+  def player_name(offset=0)
+    self.json_positions[(self.player + offset + self.nb_players) % self.nb_players]["name"]
   end
 end

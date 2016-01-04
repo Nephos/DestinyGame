@@ -7,7 +7,8 @@ class GamesController < ApplicationController
   def play_dice
     @dice = Integer(params[:dice])
     # forward, but cycle on the position maximum
-    @square_pos = (@pos[@player]["val"] += @dice) % (Square.max_position + 1)
+    @square_pos = (@pos[@player]["val"] + @dice) % (Square.max_position + 1)
+    @pos[@player]["val"] = @square_pos
     # select the first effect >= current position
     @effect = Square.order(:position).where("position >= ?", @square_pos).first unless @dice == 0
     # update position and set next player
@@ -32,6 +33,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    @pos = []
   end
 
   # GET /games/1/edit
@@ -82,8 +84,8 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
-      @pos = @game.positions
-      @player = @game.player
+      @pos = @game.json_positions
+      @player = @game.player.to_i
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

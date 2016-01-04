@@ -12,8 +12,8 @@ table.table
   tbody
     - @games.each do |game|
       tr
-        td = game.positions[game.player]["name"]
-        td = game.positions.map{|e| e["name"]}.join(", ")
+        td = (game.json_positions[game.player] || {"name" => ""})["name"]
+        td = game.json_positions.map{|e| e["name"]}.join(", ")
         td
           = link_to 'Play', play_game_path(game), class: 'btn btn-success'
           = link_to 'Show', game, class: 'btn btn-primary'
