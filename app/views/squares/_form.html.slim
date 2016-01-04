@@ -1,0 +1,21 @@
+= form_for @square do |f|
+  - if @square.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@square.errors.count, "error")} prohibited this square from being saved:"
+      ul
+        - @square.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :position
+    = f.number_field :position
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :image
+    = f.text_field :image
+  .actions = f.submit

@@ -1,0 +1,14 @@
+p#notice = notice
+
+p
+  strong Player:
+  = @game.player
+p
+  strong Positions:
+  = @game.positions
+
+= link_to 'Edit', edit_game_path(@game)
+'|
+= link_to 'Play', play_game_path(@game)
+'|
+= link_to 'Back', games_path

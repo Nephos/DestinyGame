@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Position:
+  = @square.position
+p
+  strong Title:
+  = @square.title
+p
+  strong Description:
+  = @square.description
+p
+  strong Image:
+  = @square.image
+
+= link_to 'Edit', edit_square_path(@square)
+'|
+= link_to 'Back', squares_path

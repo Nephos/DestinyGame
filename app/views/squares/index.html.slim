@@ -1,0 +1,27 @@
+h1 Listing squares
+
+table
+  thead
+    tr
+      th Position
+      th Title
+      th Description
+      th Image
+      th
+      th
+      th
+
+  tbody
+    - @squares.each do |square|
+      tr
+        td = square.position
+        td = square.title
+        td = square.description
+        td = square.image
+        td = link_to 'Show', square
+        td = link_to 'Edit', edit_square_path(square)
+        td = link_to 'Destroy', square, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Square', new_square_path

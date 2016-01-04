@@ -1,0 +1,8 @@
+- if @effect
+  h3 = @effect.title
+  p = @effect.description
+
+h1 = "Player #{@game.player}"
+= link_to "Pass", play_dice_game_path(@game, 0), class: "btn"
+- (1..20).each do |i|
+  = link_to "#{i}", play_dice_game_path(@game, i), class: "btn"

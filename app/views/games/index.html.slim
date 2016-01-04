@@ -1,0 +1,23 @@
+h1 Listing games
+
+table
+  thead
+    tr
+      th Player
+      th Positions
+      th
+      th
+      th
+
+  tbody
+    - @games.each do |game|
+      tr
+        td = game.player
+        td = game.positions
+        td = link_to 'Show', game
+        td = link_to 'Edit', edit_game_path(game)
+        td = link_to 'Destroy', game, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Game', new_game_path
