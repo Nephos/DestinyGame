@@ -7,7 +7,7 @@ class GamesController < ApplicationController
   def play_dice
     @dice = Integer(params[:dice])
     # forward, but cycle on the position maximum
-    @square_pos = (@pos[@player] += @dice) % (Square.max_position + 1)
+    @square_pos = (@pos[@player]["val"] += @dice) % (Square.max_position + 1)
     # select the first effect >= current position
     @effect = Square.order(:position).where("position >= ?", @square_pos).first unless @dice == 0
     # update position and set next player
@@ -82,7 +82,7 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
-      @pos = JSON.parse(@game.positions)
+      @pos = @game.positions
       @player = @game.player
     end
 

@@ -1,0 +1,16 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    #navbar-title.navbar-header
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"]
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      .navbar-brand
+        = link_to "Destiny Game", "/games"
+
+    #navbar.navbar-collapse.collapse
+      ul.nav.navbar-nav.navbar-right
+        li = link_to "Games", games_url
+        li = link_to "Squares", squares_url
+

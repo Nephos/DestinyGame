@@ -1,11 +1,11 @@
 .container-fluid
   .row
     - if @effect
-      h1.page-header = @effect.title
+      h1.page-header = "#{@effect.title} (#{@game.positions[(@game.player - 1 + @game.positions.size) % @game.positions.size]["name"]})"
       p = @effect.description
 
   .row
-    h1.page-header = "Player #{@game.player} ()"
+    h1.page-header = "Player #{@game.player} (#{@game.positions[@game.player % @game.positions.size]["name"]})"
 
 
   .row
@@ -21,3 +21,5 @@
             - i = a * 4 + b
             - type = %w(danger warning info primary success)[a]
             samp = link_to "#{i}", play_dice_game_path(@game, i), class: "btn btn-lg btn-#{type} text-center", style: "margin: 2px; width: 80px; height: 80px; line-height: 40px; text-align: center;"
+
+= link_to 'Back', games_path, class: 'btn'

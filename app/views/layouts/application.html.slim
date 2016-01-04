@@ -1,11 +1,22 @@
 doctype html
 html
   head
-    title
-      | DestinyGame
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    title DestinyGame
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    meta charset="utf-8"
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+
   body
-    = yield
+    = render partial: "/layouts/navbar"
+    br
+    br
+    br
+
+    .container-fluid
+      .row
+        #main.main
+          = render partial: "/layouts/infos"
+          #yield.yield
+            = yield

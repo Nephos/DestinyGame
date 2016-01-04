@@ -1,27 +1,28 @@
 h1 Listing squares
 
-table
+table.table
   thead
     tr
       th Position
       th Title
       th Description
-      th Image
+      //th Image
       th
-      th
-      th
+      //th
+      //th
 
   tbody
     - @squares.each do |square|
       tr
         td = square.position
         td = square.title
-        td = square.description
-        td = square.image
-        td = link_to 'Show', square
-        td = link_to 'Edit', edit_square_path(square)
-        td = link_to 'Destroy', square, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = square.description.to_s[0..30] + (square.description.to_s.size > 33 ? "..." : square.description.to_s[31..33].to_s)
+        //td = square.image
+        td
+          = link_to 'Show', square, class: 'btn btn-primary'
+          = link_to 'Edit', edit_square_path(square), class: 'btn btn-warning'
+          = link_to 'Destroy', square, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger'
 
 br
 
-= link_to 'New Square', new_square_path
+= link_to 'New Square', new_square_path, class: 'btn'

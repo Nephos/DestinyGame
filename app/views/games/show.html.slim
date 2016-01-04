@@ -1,14 +1,11 @@
-p#notice = notice
+.row
+  p
+    strong.col-md-4 Player:
+    .col-md-8 = @game.player
+  p
+    strong.col-md-4 Positions:
+    .col-md-8 = @game.positions
 
-p
-  strong Player:
-  = @game.player
-p
-  strong Positions:
-  = @game.positions
-
-= link_to 'Edit', edit_game_path(@game)
-'|
-= link_to 'Play', play_game_path(@game)
-'|
-= link_to 'Back', games_path
+= link_to 'Play', play_game_path(@game), class: 'btn btn-success'
+= link_to 'Edit', edit_game_path(@game), class: 'btn'
+= link_to 'Back', games_path, class: 'btn'

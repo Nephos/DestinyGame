@@ -1,23 +1,25 @@
 h1 Listing games
 
-table
+table.table
   thead
     tr
       th Player
-      th Positions
+      th Names
       th
-      th
-      th
+      //th
+      //th
 
   tbody
     - @games.each do |game|
       tr
-        td = game.player
-        td = game.positions
-        td = link_to 'Show', game
-        td = link_to 'Edit', edit_game_path(game)
-        td = link_to 'Destroy', game, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = game.positions[game.player]["name"]
+        td = game.positions.map{|e| e["name"]}.join(", ")
+        td
+          = link_to 'Play', play_game_path(game), class: 'btn btn-success'
+          = link_to 'Show', game, class: 'btn btn-primary'
+          = link_to 'Edit', edit_game_path(game), class: 'btn btn-warning'
+          = link_to 'Destroy', game, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger'
 
 br
 
-= link_to 'New Game', new_game_path
+= link_to 'New Game', new_game_path, class: 'btn btn-primary'

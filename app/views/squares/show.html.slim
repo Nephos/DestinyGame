@@ -1,18 +1,16 @@
-p#notice = notice
+.row
+  p
+    strong.col-md-4 Position:
+    .col-md-8 = @square.position
+  p
+    strong.col-md-4 Title:
+    .col-md-8 = @square.title
+  p
+    strong.col-md-4 Description:
+    .col-md-8 = @square.description
+  p
+    strong.col-md-4 Image:
+    .col-md-8 = @square.image
 
-p
-  strong Position:
-  = @square.position
-p
-  strong Title:
-  = @square.title
-p
-  strong Description:
-  = @square.description
-p
-  strong Image:
-  = @square.image
-
-= link_to 'Edit', edit_square_path(@square)
-'|
-= link_to 'Back', squares_path
+= link_to 'Edit', edit_square_path(@square), class: 'btn'
+= link_to 'Back', squares_path, class: 'btn'
