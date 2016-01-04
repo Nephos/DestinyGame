@@ -19,7 +19,7 @@
         center
           - (1..4).each do |b|
             - i = a * 4 + b
-            - type = %w(danger warning info primary success)[a]
+            - type = %w(danger warning default primary success)[a]
             samp = link_to "#{i}", play_dice_game_path(@game, i), class: "btn btn-lg btn-#{type} text-center", style: "margin: 2px; width: 80px; height: 80px; line-height: 40px; text-align: center;"
 
 = link_to 'Back', games_path, class: 'btn'
